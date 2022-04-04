@@ -36,7 +36,6 @@ body{
   font-size:1.2rem;
   background:var(--bg);
   place-self:center;
-  overflow: hidden;
 }
 
 header{
@@ -44,14 +43,13 @@ header{
   align-items:center;
   grid-template-columns:50px auto;
   padding:20px 0;
-  border:1px solid;
 }
 .title{
   text-align:right;
   font-size:2rem;
 }
 section{
-  height:calc(100% - 75px - 92px);
+  height:80%;
   overflow-y:scroll;
   overflow-x:hidden;
 }
@@ -137,7 +135,7 @@ section{
   justify-content:space-between;
   padding:20px 0;
 }
-.form div{
+input[type = date]{
   border: 1px solid;
 }
 
