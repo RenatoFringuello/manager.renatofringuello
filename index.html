@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Manager</title>
+    <link rel="stylesheet" href="./css/style.css"
+  </head>
+  <body>
+    <header>
+      <div class="button" id="back"><img src="https://cdn-icons-png.flaticon.com/512/507/507257.png" alt=""></div>
+      <div class="title"></div>
+    </header>
+
+    <section class="main">
+    </section>
+
+    <section id="new">
+      <div class="form">
+        <div>
+          <div class="label">Exam's Title</div>
+          <input type="text" id="newTitle">
+        </div>
+        <div>
+          <div class="label">Exam's Date</div>
+          <input type="date" id="newDate">
+        </div>
+        <div>
+          <div class="label">Num Page to study</div>
+          <input inputmode="numeric" type="number" id="newTotPage">
+        </div>
+        <div class="button" id="btnAddExam">Save</div>
+      </div>
+    </section>
+
+    <section id="update">
+      <div class="form">
+        <div>
+          <div class="label">N° pages Done</div>
+          <input inputmode="numeric" type="number" id="upDone">
+        </div>
+        <div>
+          <div class="label">N° pages to Undone</div>
+          <input inputmode="numeric" type="number" id="upUndone">
+        </div>
+        <div class="button" id="btnPassExam">Passed</div>
+        <div class="button" id="btnUpdateExam">Save</div>
+      </div>
+
+      <section class="alertSection" id="uSure">
+        <div class="alert">
+          <div class="alert-title">Did u really pass the exam?</div>
+          <div class="button" id="btnConfirmPassExam">Yes, I did<br><span class="textOnBrackets">(great Job!)</span></div>
+          <div class="button" id="btnNoPassExam">Not yet<br><span class="textOnBrackets">(I'll fu**in' pass it)</span></div>
+        </div>
+      </section>
+    </section>
+
+    <footer>
+      <div class="btn" id="btnNewExam">
+        <div class="newfolder-exam">
+          <div class="backfolder textsection">
+            <div class="title-exam" id="exam-title">+</div>
+          </div>
+          <div class="backfolder"></div>
+          <div class="paper paperBack"></div>
+          <div class="paper"></div>
+          <div class="frontfolder">
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="./js/script.js"
+  </body>
+</html>
