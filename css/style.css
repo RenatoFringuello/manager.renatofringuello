@@ -138,7 +138,7 @@ section{
   padding:20px 0;
 }
 .form div{
-  width:100%;
+  border: 1px solid;
 }
 
 input{
