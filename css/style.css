@@ -44,6 +44,7 @@ header{
   align-items:center;
   grid-template-columns:50px auto;
   padding:20px 0;
+  border:1px solid;
 }
 .title{
   text-align:right;
