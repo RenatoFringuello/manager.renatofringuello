@@ -27,7 +27,7 @@ html{
   display:grid;
 }
 body{
-  max-height:100vh;
+  height:100vh;
   width:clamp(380px, 50%, 600px);
   display:flex;
   flex-direction:column;
@@ -51,7 +51,7 @@ header{
   font-size:2rem;
 }
 section{
-  height:100%;
+  height:calc(100% - 75px - 92px);
   overflow-y:scroll;
   overflow-x:hidden;
 }
