@@ -63,9 +63,9 @@ section{
   transition:all 0.7s ease-in-out;
   cursor:pointer;
 }
-.folder:hover{
+/*.folder:hover{ //dbclick event
   height:270px;
-}
+}*/
 
 .backfolder{
   width:100%;
@@ -247,9 +247,9 @@ footer{
     font-size:1.4rem;
   }
   
-  .folder:hover{
+  /*.folder:hover{
     height:320px;
-  }
+  }*/
   .frontfolder{
     height:250px;
   }
