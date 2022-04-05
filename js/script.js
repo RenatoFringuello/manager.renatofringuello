@@ -10,6 +10,7 @@ $(document).ready(function(){
   
     //element vars
     var body = $(".mainContainer");
+    var section = $("section");
   
     //------------------------------FUNCTIONS
     //calculate days to go and pg / day
@@ -64,6 +65,7 @@ $(document).ready(function(){
           $("footer").css("display", "block");
           body.css("padding","0");
           $(".title").css("padding","0 20px");
+          section.css("height", "calc(100% - 174px)");
           break;
         case 1:
           $("#back").css("display","grid");
@@ -72,8 +74,9 @@ $(document).ready(function(){
           $("#new").css("display", "block");
           $("#update").css("display","none");
           $("footer").css("display", "none");
-          body.css("padding","0 50px");
+          body.css("padding","0 50px 50px 50px");
           $(".title").css("padding","0");
+          section.css("height", "100%");
           break;
         case 2:
           $("#back").css("display","grid");
@@ -83,8 +86,9 @@ $(document).ready(function(){
           $("#update").css("display","block");
           $("#uSure").css("display", "none");
           $("footer").css("display", "none");
-          body.css("padding","0 50px");
+          body.css("padding","0 50px 50px 50px");
           $(".title").css("padding","0");
+          section.css("height", "100%");
           break;
         case 3:
           $("#uSure").css("display", "flex");
