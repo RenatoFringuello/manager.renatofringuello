@@ -27,7 +27,7 @@
 body{
   display:grid;
   width:100vw;
-  height:100vh;
+  
   font-family: 'Syncopate', sans-serif;
   font-size:1.2rem;
   background:var(--bg);
