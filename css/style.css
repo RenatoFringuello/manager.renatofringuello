@@ -23,20 +23,24 @@
 ::-webkit-scrollbar{
   display:none;
 }
-html{
+
+html, body{
   display:grid;
-  height: 100vh;
-}
-body{
-  height:100%;
-  width:clamp(380px, 50%, 600px);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  width:100vw;
+  height:100vh;
   font-family: 'Syncopate', sans-serif;
   font-size:1.2rem;
   background:var(--bg);
+}
+
+.mainContainer{
+  height:100%;
+  width:clamp(380px, 50vw, 600px);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
   place-self:center;
+
 }
 
 header{
@@ -72,6 +76,9 @@ section{
   border-radius:10px 0 0 0;
   background:var(--folderBack);
   box-shadow:0 -4px 0px var(--shadow);
+}
+.folder:hover{
+  height:270px;
 }
 
 .textsection{
@@ -109,7 +116,7 @@ section{
   top:-48px;
   box-shadow:0 -4px 0 var(--shadow3);
   padding:20px 25px 20px 20px;
-  
+
   display:grid;
   grid-template-columns:50% 50%;
   grid-template-rows:25% 25% 25% 25%;
@@ -149,7 +156,6 @@ input{
 input:focus{
   outline:none;
   border:2px solid var(--folderBack);
-
 }
 
 .button{
@@ -245,7 +251,7 @@ footer{
   body{
     font-size:1.4rem;
   }
-  
+
   .frontfolder{
     height:250px;
   }
