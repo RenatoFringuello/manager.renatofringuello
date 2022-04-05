@@ -163,4 +163,8 @@ $(document).ready(function(){
   
     //-----------------------------------init
     setPage(0,0);
+    body.css("height", window.innerHeight);
+    $(window).on("resize", function(){
+        body.css("height", window.innerHeight);
+    });
   });
