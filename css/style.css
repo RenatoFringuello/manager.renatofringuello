@@ -136,9 +136,6 @@ section{
   justify-content:space-between;
   padding:20px 0;
 }
-input[type = date]{
-  border: 1px solid;
-}
 
 input{
   width:100%;
