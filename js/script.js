@@ -1,11 +1,15 @@
+import {InsertData, SelectData, UpdateData, RemoveData, db} from "./module-firestore.js";
+import { get, ref, child, update, remove} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+
 $(document).ready(function(){
     var pageIndex = 0;
     var folderCounter = 0;
   
+    var table = "folder/";
+
     var folder = '<div class="folder" id="exam"><div class="backfolder textsection"><div class="title-exam" id="exam-title" ></div></div><div class="backfolder"></div><div class="paper paperBack"></div><div class="paper"></div><div class="frontfolder"><div class="contentbox">Date :</div><div class="contentbox left" id="exam-date"></div><div class="contentbox">Days to go :</div><div class="contentbox left" id="exam-days"></div><div class="contentbox">pg/day :</div><div class="contentbox left" id="exam-pag"></div><div class="contentbox">pages :</div><div class="contentbox left" id="exam-tot-pag"></div></div></div>';
   
     var pgDone = [], totPag = [], date = [], daysToGo = [] , pgDay = [], pgD, examTitle = [];
-  
     let examIndex ;
   
     //element vars
@@ -21,7 +25,7 @@ $(document).ready(function(){
     } 
   
     function setExamValues(i){
-      $("#exam").attr("id", folderCounter);
+      $("#exam").attr("id", i);
       $("#" + i + " #exam-title").text(examTitle[i]);
       $("#" + i + " #exam-date").text(date[i][2]+"/"+date[i][1]+"/"+date[i][0]);
       $("#" + i + " #exam-days").text(daysToGo[i]);
@@ -105,6 +109,39 @@ $(document).ready(function(){
       pgDone.push(0);
     }
   
+    function insertIntoDb(){
+      for(let i=0; i<folderCounter; i++){
+        InsertData(table,i, examTitle[i], date[i], totPag[i], pgDone[i]);
+      }
+    }
+
+    function GetAllData(){
+      var i=0;
+      const dbref = ref(db);
+      get(child(dbref, "folder"))
+      .then((snapshot)=>{
+          var objs = [];
+          snapshot.forEach(childSnapshot => {
+            objs.push(childSnapshot.val());
+            //store data into var
+            examTitle.push( objs[i].title);
+            date.push(objs[i].date);
+            totPag.push( objs[i].nPage);
+            pgDone.push(objs[i].nPageDone);
+
+            initApp(i);
+            i++;
+            folderCounter = i;  
+          });
+          console.log(examTitle, date);
+      });
+    }
+
+    function initApp(i){
+      addFolder();
+      initValues(i);
+      setExamValues(i);
+    }
   
     //---------------------------------events
     $("#back").on("click", function(){
@@ -119,7 +156,10 @@ $(document).ready(function(){
       setExamValues(folderCounter);
   
       folderCounter += 1;
+
       setPage(0,0);
+      insertIntoDb();
+
     });
   
     $("#btnNewExam").on("click", function(){
@@ -136,9 +176,14 @@ $(document).ready(function(){
       else if(pgDone[examIndex] < 0){
         pgDone[examIndex] = 0;
       }
+
+      initValues(examIndex);
   
       $("#" + examIndex + " #exam-tot-pag").text(pgDone[examIndex]+"/"+totPag[examIndex]);
+
       setPage(0,0);
+      UpdateData(table, examIndex, pgDone[examIndex]);
+
     });
   
     $("#btnPassExam").on("click", function(){
@@ -154,7 +199,10 @@ $(document).ready(function(){
       examTitle.splice(examIndex,1);
   
       $("#"+ examIndex).remove();
+
       setPage(0,0);
+      RemoveData(table, examIndex);
+
     });
   
     $("#btnNoPassExam").on("click", function(){
@@ -163,8 +211,11 @@ $(document).ready(function(){
   
     //-----------------------------------init
     setPage(0,0);
+    //bug fix
     body.css("height", window.innerHeight);
     $(window).on("resize", function(){
-        body.css("height", window.innerHeight);
+      body.css("height", window.innerHeight);
     });
+    GetAllData();
+    
   });
