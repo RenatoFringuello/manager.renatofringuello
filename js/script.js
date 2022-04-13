@@ -20,8 +20,8 @@ $(document).ready(function(){
     //calculate days to go and pg / day
     function initValues(i){
       daysToGo.push( Math.floor((new Date(date[i][0],date[i][1],date[i][2]) - new Date()) / (1000*60*60*24)) - 30);
-      pgD = Math.floor(totPag[i] / daysToGo[i]);
-      pgDay.push((totPag[i] / daysToGo[i]) > pgD + 0.3? pgD + 1 : pgD );
+      pgD = Math.floor((totPag[i] - pgDone[i]) / daysToGo[i]);
+      pgDay.push(((totPag[i] - pgDone[i]) / daysToGo[i]) > pgD + 0.3? pgD + 1 : ((totPag[i] != pgDone[i]))? 1 : pgD  );
     } 
   
     function setExamValues(i){
@@ -133,7 +133,6 @@ $(document).ready(function(){
             i++;
             folderCounter = i;  
           });
-          console.log(examTitle, date);
       });
     }
 
@@ -159,7 +158,6 @@ $(document).ready(function(){
 
       setPage(0,0);
       insertIntoDb();
-
     });
   
     $("#btnNewExam").on("click", function(){
@@ -177,8 +175,10 @@ $(document).ready(function(){
         pgDone[examIndex] = 0;
       }
 
-      initValues(examIndex);
-  
+      pgD = Math.floor((totPag[examIndex] - pgDone[examIndex]) / daysToGo[examIndex]);
+      pgDay[examIndex] = ((totPag[examIndex] - pgDone[examIndex]) / daysToGo[examIndex]) > pgD + 0.3? pgD + 1 : ((totPag[examIndex] != pgDone[examIndex]))? 1 : pgD ;
+      
+      $("#" + examIndex + " #exam-pag").text(pgDay[examIndex]);
       $("#" + examIndex + " #exam-tot-pag").text(pgDone[examIndex]+"/"+totPag[examIndex]);
 
       setPage(0,0);
